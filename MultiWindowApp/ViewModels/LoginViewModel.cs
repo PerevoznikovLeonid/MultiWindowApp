@@ -1,6 +1,6 @@
 namespace MultiWindowApp.ViewModels;
 
-public class LoginViewModel
+public partial class LoginViewModel: ViewModelBase
 {
     
 }
