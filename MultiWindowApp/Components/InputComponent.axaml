@@ -3,7 +3,7 @@
              x:Class="MultiWindowApp.Components.InputComponent"
              x:Name="Component">
   <UserControl.Styles>
-    <StyleInclude Source="../../Styles/Styles.axaml"/>
+    <StyleInclude Source="/Styles/Styles.axaml"/>
   </UserControl.Styles>
   
   <Grid ColumnDefinitions="*, 2.5*">
