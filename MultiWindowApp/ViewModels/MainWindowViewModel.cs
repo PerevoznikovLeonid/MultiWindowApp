@@ -1,19 +1,16 @@
 ﻿using System.Collections.ObjectModel;
+using ReactiveUI;
 using ReactiveUI.SourceGenerators;
+using Splat;
 
 namespace MultiWindowApp.ViewModels;
 
-public partial class MainWindowViewModel : ViewModelBase
+public partial class MainWindowViewModel : ViewModelBase, IScreen
 {
-    public ObservableCollection<ViewItem> Views =>
-    [
-        
-    ];
-    
-    [Reactive] private ViewItem _currentViewModel;
+    public RoutingState Router { get; } = new RoutingState();
 
     public MainWindowViewModel()
     {
-        CurrentViewModel = Views[0];
+        Router.Navigate.Execute(new RegistrationViewModel(this));
     }
 }

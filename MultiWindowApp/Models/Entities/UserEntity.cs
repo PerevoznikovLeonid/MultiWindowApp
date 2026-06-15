@@ -1,9 +1,10 @@
 using System;
 using MultiWindowApp.Models.Enums;
 
-namespace MultiWindowApp.Models.Daos;
+namespace MultiWindowApp.Models.Entities;
 
-public class UserDao
+// TODO: Переделать под PostgreSQL
+public class UserEntity
 {
     public int Id { get; set; }
     public string FirstName { get; set; } = string.Empty;
