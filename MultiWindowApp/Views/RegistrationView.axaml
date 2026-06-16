@@ -7,26 +7,45 @@
              x:Class="MultiWindowApp.Views.RegistrationView">
     <StackPanel Orientation="Vertical">
         <Panel Classes="center">
-            <TextBlock Text="Авторизация"
+            <TextBlock Text="Регистрация"
                        Classes="title" />
         </Panel>
 
         <StackPanel Orientation="Vertical">
-            <c:InputComponent x:Name="InputLogin"
-                              Placeholder="Введите логин"
+            <c:InputComponent Placeholder="Введите имя"
+                              Label="Имя"/>
+            <c:InputComponent Placeholder="Введите фамилию"
+                              Label="Фамилия"/>
+            <Grid ColumnDefinitions="*, 2.5*"
+                  HorizontalAlignment="Center">
+                <Label Grid.Column="0" 
+                       Content="Пол"/>
+                <ComboBox Grid.Column="1"
+                          SelectedIndex="0">
+                    <ComboBoxItem Content="Не указан"/>
+                    <ComboBoxItem Content="Мужской"/>
+                    <ComboBoxItem Content="Женский"/>
+                </ComboBox>
+            </Grid>
+            <Grid ColumnDefinitions="*, 2.5*"
+                  HorizontalAlignment="Center">
+                <Label Grid.Column="0" 
+                       Content="Дата рождения"/>
+                <DatePicker Grid.Column="1"/>
+            </Grid>
+            <c:InputComponent Placeholder="Введите электронную почту"
                               Label="Логин"/>
-            <c:InputComponent x:Name="InputPassword"
-                              Placeholder="Введите пароль"
+            <c:InputComponent Placeholder="Введите пароль"
                               Label="Пароль"/>
+            <c:InputComponent Placeholder="Введите пароль"
+                              Label="Подтверждение пароля"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal"
                     Classes="center">
-            <Button x:Name="ButtonLogin"
-                    Content="Войти"
+            <Button Content="Зарегистрироваться"
                     Classes="login"/>
-            <Button x:Name="ButtonCancel"
-                    Content="Отмена"
+            <Button Content="Отмена"
                     Classes="cancel"/>
         </StackPanel>
     </StackPanel>

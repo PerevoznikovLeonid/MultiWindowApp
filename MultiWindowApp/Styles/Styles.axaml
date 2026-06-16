@@ -1,5 +1,6 @@
 <Styles xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:c="clr-namespace:MultiWindowApp.Components">
     
     <Styles.Resources>
         <ResourceDictionary>
@@ -30,7 +31,8 @@
 
     <!-- Уникальные свойства TextBox -->
     <Style Selector="TextBox">
-        <Setter Property="HorizontalContentAlignment" Value="Right" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
         <Setter Property="Margin" Value="{StaticResource ResourceKey=MarginTextBox}" />
     </Style>
 
@@ -42,6 +44,7 @@
         <Setter Property="Width" Value="{StaticResource ResourceKey=ButtonWidth}" />
         <Setter Property="Height" Value="{StaticResource ResourceKey=ButtonHeight}" />
         <Setter Property="Foreground" Value="White" />
+        <Setter Property="Margin" Value="5, 5" />
 
         <!-- Общее состояние при наведении -->
         <Style Selector="^:pointerover">
@@ -70,5 +73,9 @@
     <!-- Центрирование панелей -->
     <Style Selector="Panel.center, StackPanel.center">
         <Setter Property="HorizontalAlignment" Value="Center" />
+    </Style>
+    
+    <Style Selector="c|InputComponent">
+        <Setter Property="HorizontalAlignment" Value="Center"/>
     </Style>
 </Styles>
