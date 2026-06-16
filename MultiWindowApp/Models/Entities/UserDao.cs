@@ -4,7 +4,7 @@ using MultiWindowApp.Models.Enums;
 namespace MultiWindowApp.Models.Entities;
 
 // TODO: Переделать под PostgreSQL
-public class UserEntity
+public class UserDao
 {
     public int Id { get; set; }
     public string FirstName { get; set; } = string.Empty;
