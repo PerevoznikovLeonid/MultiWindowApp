@@ -1,6 +1,6 @@
+using System;
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Markup.Xaml;
 using MultiWindowApp.ViewModels;
 using ReactiveUI;
 
@@ -11,26 +11,27 @@ public partial class LoginView : UserControl, IViewFor<LoginViewModel>
     public LoginView()
     {
         InitializeComponent();
-        this.WhenActivated(disposables => { });
-    }
-
-    private void InitializeComponent()
-    {
-        AvaloniaXamlLoader.Load(this);
     }
     
+    public static readonly StyledProperty<LoginViewModel?> ViewModelProperty =
+        AvaloniaProperty.Register<LoginView, LoginViewModel?>(nameof(ViewModel));
+
     public LoginViewModel? ViewModel
     {
-        get => (LoginViewModel?)GetValue(ViewModelProperty);
+        get => GetValue(ViewModelProperty);
         set => SetValue(ViewModelProperty, value);
     }
-
+    
     object? IViewFor.ViewModel
     {
         get => ViewModel;
         set => ViewModel = (LoginViewModel?)value;
     }
-
-    public static readonly StyledProperty<LoginViewModel?> ViewModelProperty =
-        AvaloniaProperty.Register<LoginView, LoginViewModel?>(nameof(ViewModel));
+    
+    protected override void OnDataContextChanged(EventArgs e)
+    {
+        base.OnDataContextChanged(e);
+        if (DataContext is LoginViewModel vm)
+            ViewModel = vm;
+    }
 }

@@ -5,19 +5,14 @@ using ReactiveUI.SourceGenerators;
 
 namespace MultiWindowApp.ViewModels;
 
-public partial class LoginViewModel: ViewModelBase, IRoutableViewModel
+public partial class LoginViewModel(IScreen hostScreen) : ViewModelBase, IRoutableViewModel
 {
     public string UrlPathSegment => "login";
-    public IScreen HostScreen { get; }
-    
+    public IScreen HostScreen { get; } = hostScreen;
+
     [Reactive] private string _email = string.Empty;
     [Reactive] private string _password = string.Empty;
 
-    public LoginViewModel(IScreen hostScreen)
-    {
-        HostScreen = hostScreen;
-    }
-    
     [ReactiveCommand]
     private async Task Login()
     {

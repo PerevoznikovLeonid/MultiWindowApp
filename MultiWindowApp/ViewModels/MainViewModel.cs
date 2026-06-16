@@ -2,13 +2,8 @@ using ReactiveUI;
 
 namespace MultiWindowApp.ViewModels;
 
-public partial class MainViewModel: ViewModelBase, IRoutableViewModel
+public partial class MainViewModel(IScreen screen) : ViewModelBase, IRoutableViewModel
 {
-    public IScreen HostScreen { get; }
+    public IScreen HostScreen { get; } = screen;
     public string UrlPathSegment => "main";
-
-    public MainViewModel(IScreen screen)
-    {
-        HostScreen = screen;
-    }
 }

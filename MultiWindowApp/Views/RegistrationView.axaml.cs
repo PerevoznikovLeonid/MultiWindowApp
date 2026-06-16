@@ -1,22 +1,23 @@
 using System;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Markup.Xaml;
 using MultiWindowApp.ViewModels;
 using ReactiveUI;
 
 namespace MultiWindowApp.Views;
 
-public partial class MainView : UserControl, IViewFor<MainViewModel>
+public partial class RegistrationView : UserControl, IViewFor<RegistrationViewModel>
 {
-    public MainView()
+    public RegistrationView()
     {
         InitializeComponent();
     }
     
-    public static readonly StyledProperty<MainViewModel?> ViewModelProperty =
-        AvaloniaProperty.Register<MainView, MainViewModel?>(nameof(ViewModel));
+    public static readonly StyledProperty<RegistrationViewModel?> ViewModelProperty =
+        AvaloniaProperty.Register<RegistrationView, RegistrationViewModel?>(nameof(ViewModel));
 
-    public MainViewModel? ViewModel
+    public RegistrationViewModel? ViewModel
     {
         get => GetValue(ViewModelProperty);
         set => SetValue(ViewModelProperty, value);
@@ -25,13 +26,13 @@ public partial class MainView : UserControl, IViewFor<MainViewModel>
     object? IViewFor.ViewModel
     {
         get => ViewModel;
-        set => ViewModel = (MainViewModel?)value;
+        set => ViewModel = (RegistrationViewModel?)value;
     }
     
     protected override void OnDataContextChanged(EventArgs e)
     {
         base.OnDataContextChanged(e);
-        if (DataContext is MainViewModel vm)
+        if (DataContext is RegistrationViewModel vm)
             ViewModel = vm;
     }
 }
