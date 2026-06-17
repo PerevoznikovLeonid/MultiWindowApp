@@ -41,7 +41,6 @@
         <Setter Property="FontSize" Value="{StaticResource ResourceKey=FontSize}" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
-        <Setter Property="Width" Value="{StaticResource ResourceKey=ButtonWidth}" />
         <Setter Property="Height" Value="{StaticResource ResourceKey=ButtonHeight}" />
         <Setter Property="Foreground" Value="White" />
         <Setter Property="Margin" Value="5, 5" />
@@ -54,6 +53,7 @@
         <!-- Кнопка входа (login) -->
         <Style Selector="^.login">
             <Setter Property="Background" Value="DarkGreen" />
+            <Setter Property="Width" Value="300"/>
             
             <Style Selector="^:pointerover">
                 <Setter Property="Background" Value="Green"/>

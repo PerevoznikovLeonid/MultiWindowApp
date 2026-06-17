@@ -3,50 +3,64 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:c="clr-namespace:MultiWindowApp.Components"
+             xmlns:vm="clr-namespace:MultiWindowApp.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="vm:RegistrationViewModel"
              x:Class="MultiWindowApp.Views.RegistrationView">
-    <StackPanel Orientation="Vertical">
-        <Panel Classes="center">
-            <TextBlock Text="Регистрация"
-                       Classes="title" />
-        </Panel>
-
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Вход"
+                      Command="{Binding NavigateToLoginCommand}"/>
+        </Menu>
+        
         <StackPanel Orientation="Vertical">
-            <c:InputComponent Placeholder="Введите имя"
-                              Label="Имя"/>
-            <c:InputComponent Placeholder="Введите фамилию"
-                              Label="Фамилия"/>
-            <Grid ColumnDefinitions="*, 2.5*"
-                  HorizontalAlignment="Center">
-                <Label Grid.Column="0" 
-                       Content="Пол"/>
-                <ComboBox Grid.Column="1"
-                          SelectedIndex="0">
-                    <ComboBoxItem Content="Не указан"/>
-                    <ComboBoxItem Content="Мужской"/>
-                    <ComboBoxItem Content="Женский"/>
-                </ComboBox>
-            </Grid>
-            <Grid ColumnDefinitions="*, 2.5*"
-                  HorizontalAlignment="Center">
-                <Label Grid.Column="0" 
-                       Content="Дата рождения"/>
-                <DatePicker Grid.Column="1"/>
-            </Grid>
-            <c:InputComponent Placeholder="Введите электронную почту"
-                              Label="Логин"/>
-            <c:InputComponent Placeholder="Введите пароль"
-                              Label="Пароль"/>
-            <c:InputComponent Placeholder="Введите пароль"
-                              Label="Подтверждение пароля"/>
-        </StackPanel>
+            <Panel Classes="center">
+                <TextBlock Text="Регистрация"
+                           Classes="title" />
+            </Panel>
 
-        <StackPanel Orientation="Horizontal"
-                    Classes="center">
-            <Button Content="Зарегистрироваться"
-                    Classes="login"/>
-            <Button Content="Отмена"
-                    Classes="cancel"/>
+            <StackPanel Orientation="Vertical">
+                <c:InputComponent Placeholder="Введите имя"
+                                  Label="Имя"
+                                  Value="{Binding FirstName}"/>
+                <c:InputComponent Placeholder="Введите фамилию"
+                                  Label="Фамилия"
+                                  Value="{Binding LastName}"/>
+                <Grid ColumnDefinitions="*, 2.5*"
+                      HorizontalAlignment="Center">
+                    <Label Grid.Column="0" 
+                           Content="Пол"/>
+                    <ComboBox Grid.Column="1"
+                              ItemsSource="{Binding Genders}"
+                              SelectedValue="{Binding Gender}"
+                              SelectedValueBinding="{Binding Key}"
+                              DisplayMemberBinding="{Binding Value}">
+                    </ComboBox>
+                </Grid>
+                <Grid ColumnDefinitions="*, 2.5*"
+                      HorizontalAlignment="Center">
+                    <Label Grid.Column="0" 
+                           Content="Дата рождения"/>
+                    <DatePicker Grid.Column="1"
+                                SelectedDate="{Binding BirthDatePicker}"/>
+                </Grid>
+                <c:InputComponent Placeholder="Введите электронную почту"
+                                  Label="Email"
+                                  Value="{Binding Email}"/>
+                <c:InputComponent Placeholder="Введите пароль"
+                                  Label="Пароль"
+                                  Value="{Binding Password}"/>
+                <c:InputComponent Placeholder="Введите пароль"
+                                  Label="Подтверждение пароля"
+                                  Value="{Binding PasswordConfirm}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal"
+                        Classes="center">
+                <Button Content="Зарегистрироваться"
+                        Classes="login"
+                        Command="{Binding RegisterCommand}"/>
+            </StackPanel>
         </StackPanel>
-    </StackPanel>
+    </DockPanel>
 </UserControl>
