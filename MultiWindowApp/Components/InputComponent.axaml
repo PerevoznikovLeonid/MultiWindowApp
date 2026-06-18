@@ -7,8 +7,10 @@
            Target="{Binding ElementName=Input}"
            Grid.Column="0" />
     <TextBox x:Name="Input"
-             PlaceholderText="{Binding ElementName=Component, Path=Placeholder, Mode=OneWay}"
+             PlaceholderText="{Binding ElementName=Component, Path=PlaceholderText, Mode=OneWay}"
              Text="{Binding ElementName=Component, Path=Value, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+             IsReadOnly="{Binding ElementName=Component, Path=IsReadOnly, Mode=OneWay}"
+             PasswordChar="{Binding ElementName=Component, Path=PasswordChar, Mode=OneWay}"
              Grid.Column="1" />
   </Grid>
 </UserControl>

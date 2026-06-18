@@ -20,10 +20,10 @@
             </Panel>
 
             <StackPanel Orientation="Vertical">
-                <c:InputComponent Placeholder="Введите имя"
+                <c:InputComponent PlaceholderText="Введите имя"
                                   Label="Имя"
                                   Value="{Binding FirstName}"/>
-                <c:InputComponent Placeholder="Введите фамилию"
+                <c:InputComponent PlaceholderText="Введите фамилию"
                                   Label="Фамилия"
                                   Value="{Binding LastName}"/>
                 <Grid ColumnDefinitions="*, 2.5*"
@@ -44,14 +44,16 @@
                     <DatePicker Grid.Column="1"
                                 SelectedDate="{Binding BirthDatePicker}"/>
                 </Grid>
-                <c:InputComponent Placeholder="Введите электронную почту"
+                <c:InputComponent PlaceholderText="Введите электронную почту"
                                   Label="Email"
                                   Value="{Binding Email}"/>
-                <c:InputComponent Placeholder="Введите пароль"
+                <c:InputComponent PlaceholderText="Введите пароль"
                                   Label="Пароль"
+                                  PasswordChar="*"
                                   Value="{Binding Password}"/>
-                <c:InputComponent Placeholder="Введите пароль"
+                <c:InputComponent PlaceholderText="Введите пароль"
                                   Label="Подтверждение пароля"
+                                  PasswordChar="*"
                                   Value="{Binding PasswordConfirm}"/>
             </StackPanel>
 

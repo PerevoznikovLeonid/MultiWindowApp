@@ -4,6 +4,7 @@ using System;
 using Dapper;
 using Microsoft.Extensions.DependencyInjection;
 using MultiWindowApp.Models.Enums;
+using MultiWindowApp.Models.Interfaces;
 using MultiWindowApp.Models.Services;
 using MultiWindowApp.ViewModels;
 using MultiWindowApp.Views;
@@ -41,7 +42,9 @@ sealed class Program
     
                 DefaultTypeMap.MatchNamesWithUnderscores = true;
                 
-                services.AddScoped<AsyncUserRepository>();
+                // Services
+                services.AddScoped<IAsyncUserRepository, AsyncUserRepository>();
+                services.AddSingleton<INavigationService, NavigationService>();
                 
                 // ViewModel
                 services.AddTransient<MainWindowViewModel>();

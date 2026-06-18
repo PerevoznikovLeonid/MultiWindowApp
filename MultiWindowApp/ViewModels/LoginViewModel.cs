@@ -1,6 +1,9 @@
 using System;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
+using MultiWindowApp.Models.DAOs;
+using MultiWindowApp.Models.Interfaces;
+using MultiWindowApp.Models.Services;
 using ReactiveUI;
 using ReactiveUI.SourceGenerators;
 
@@ -11,14 +14,19 @@ public partial class LoginViewModel : ViewModelBase, IRoutableViewModel
     public string UrlPathSegment => "login";
     public IScreen HostScreen { get; }
 
+    private readonly INavigationService _navigationService;
+    private readonly IAsyncUserRepository _userRepository;
+    
     [Reactive] private string _email = string.Empty;
     [Reactive] private string _password = string.Empty;
     
     private readonly IObservable<bool> _canLogin;
 
-    public LoginViewModel(IScreen hostScreen)
+    public LoginViewModel(INavigationService navigationService, IAsyncUserRepository userRepository, IScreen hostScreen)
     {
         HostScreen = hostScreen;
+        _navigationService = navigationService;
+        _userRepository = userRepository;
 
         _canLogin = this.WhenAnyValue(
             x => x.Email,
@@ -29,14 +37,15 @@ public partial class LoginViewModel : ViewModelBase, IRoutableViewModel
     }
     
     [ReactiveCommand(CanExecute = nameof(_canLogin))]
-    private void Login()
+    private async Task Login()
     {
-        HostScreen.Router.Navigate.Execute(new MainViewModel(HostScreen));
+        var user = await _userRepository.GetUserByEmailAsync(Email);
+        if (user is not null) _navigationService.NavigateToMain(HostScreen, user);
     }
     
     [ReactiveCommand]
     public void NavigateToRegistration()
     {
-        HostScreen.Router.Navigate.Execute(new RegistrationViewModel(HostScreen));
+        _navigationService.NavigateToRegistration(HostScreen);
     }
 }

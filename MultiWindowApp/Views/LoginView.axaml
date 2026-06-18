@@ -20,11 +20,12 @@
             </Panel>
 
             <StackPanel Orientation="Vertical">
-                <c:InputComponent Placeholder="Введите электронную почту"
+                <c:InputComponent PlaceholderText="Введите электронную почту"
                                   Label="Email"
                                   Value="{Binding Email}"/>
-                <c:InputComponent Placeholder="Введите пароль"
+                <c:InputComponent PlaceholderText="Введите пароль"
                                   Label="Пароль"
+                                  PasswordChar="*"
                                   Value="{Binding Password}"/>
             </StackPanel>
 

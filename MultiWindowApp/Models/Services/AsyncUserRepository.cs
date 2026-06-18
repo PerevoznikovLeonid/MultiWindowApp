@@ -2,11 +2,12 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Dapper;
 using MultiWindowApp.Models.DAOs;
+using MultiWindowApp.Models.Interfaces;
 using Npgsql;
 
 namespace MultiWindowApp.Models.Services;
 
-public class AsyncUserRepository(NpgsqlDataSource dataSource)
+public class AsyncUserRepository(NpgsqlDataSource dataSource): IAsyncUserRepository
 {
     public async Task<IEnumerable<UserDao>> GetUsersAsync(int? amount)
     {
@@ -18,12 +19,12 @@ public class AsyncUserRepository(NpgsqlDataSource dataSource)
             new { amount });
     }
 
-    public async Task<UserDao?> GetUserByIdAsync(int id)
+    public async Task<UserDao?> GetUserByEmailAsync(string email)
     {
-        const string sql = "SELECT * FROM table_users WHERE is_deleted = false AND id = @id";
+        const string sql = "SELECT * FROM table_users WHERE is_deleted = false AND email = @email";
         await using var db = await dataSource.OpenConnectionAsync();
         return await db.QueryFirstOrDefaultAsync<UserDao>(sql, 
-            new { id });
+            new { email });
     }
     
     public async Task<int> AddUserAsync(UserDao user)

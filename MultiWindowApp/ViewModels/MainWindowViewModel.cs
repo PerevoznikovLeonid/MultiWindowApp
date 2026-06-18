@@ -1,13 +1,17 @@
-﻿using ReactiveUI;
+﻿using Microsoft.Extensions.DependencyInjection;
+using MultiWindowApp.Models.Interfaces;
+using ReactiveUI;
 
 namespace MultiWindowApp.ViewModels;
 
 public partial class MainWindowViewModel : ViewModelBase, IScreen
 {
-    public RoutingState Router { get; } = new();
+    public RoutingState Router { get; }
 
-    public MainWindowViewModel()
+    public MainWindowViewModel(INavigationService navigationService)
     {
-        Router.Navigate.Execute(new RegistrationViewModel(this));
+        Router = new RoutingState();
+
+        navigationService.NavigateToRegistration(this);
     }
 }

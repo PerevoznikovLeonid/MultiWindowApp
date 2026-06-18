@@ -11,9 +11,15 @@ public partial class InputComponent : UserControl
     public static readonly StyledProperty<string?> ValueProperty =
         AvaloniaProperty.Register<InputComponent, string?>(nameof(Value));
 
-    public static readonly StyledProperty<string?> PlaceholderProperty =
-        AvaloniaProperty.Register<InputComponent, string?>(nameof(Placeholder));
+    public static readonly StyledProperty<string?> PlaceholderTextProperty =
+        AvaloniaProperty.Register<InputComponent, string?>(nameof(PlaceholderText));
 
+    public static readonly StyledProperty<bool> IsReadOnlyProperty =
+        AvaloniaProperty.Register<InputComponent, bool>(nameof(IsReadOnly));
+    
+    public static readonly StyledProperty<char> PasswordCharProperty =
+        AvaloniaProperty.Register<InputComponent, char>(nameof(PasswordChar));
+    
     public InputComponent()
     {
         InitializeComponent();
@@ -31,9 +37,21 @@ public partial class InputComponent : UserControl
         set => SetValue(ValueProperty, value);
     }
 
-    public string? Placeholder
+    public string? PlaceholderText
     {
-        get => GetValue(PlaceholderProperty);
-        set => SetValue(PlaceholderProperty, value);
+        get => GetValue(PlaceholderTextProperty);
+        set => SetValue(PlaceholderTextProperty, value);
+    }
+    
+    public bool IsReadOnly
+    {
+        get => GetValue(IsReadOnlyProperty);
+        set => SetValue(IsReadOnlyProperty, value);
+    }
+
+    public char PasswordChar
+    {
+        get => GetValue(PasswordCharProperty);
+        set => SetValue(PasswordCharProperty, value);
     }
 }
