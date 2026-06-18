@@ -11,5 +11,5 @@
         Title="MultiWindowApp">
     
     <rxui:RoutedViewHost Router="{Binding Router}" />
-
+    
 </Window>

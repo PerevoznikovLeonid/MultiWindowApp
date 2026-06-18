@@ -2,6 +2,7 @@
 using ReactiveUI.Avalonia;
 using System;
 using Dapper;
+using DotNetEnv;
 using Microsoft.Extensions.DependencyInjection;
 using MultiWindowApp.Models.Enums;
 using MultiWindowApp.Models.Interfaces;
@@ -34,7 +35,8 @@ sealed class Program
             .LogToTrace()
             .UseReactiveUIWithMicrosoftDependencyResolver(services =>
             {
-                const string connectionString = "Host=localhost;Database=users;Username=postgres;Password=123";
+                Env.Load();
+                var connectionString = Environment.GetEnvironmentVariable("CONNECTION_STRING");
                 var dataSourceBuilder = new NpgsqlDataSourceBuilder(connectionString);
                 dataSourceBuilder.MapEnum<Gender>();
                 var dataSource = dataSourceBuilder.Build();
