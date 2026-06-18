@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Dapper;
-using MultiWindowApp.Models.DAOs;
+using MultiWindowApp.Models.Entities;
 using MultiWindowApp.Models.Interfaces;
 using Npgsql;
 
@@ -9,25 +9,25 @@ namespace MultiWindowApp.Models.Services;
 
 public class AsyncUserRepository(NpgsqlDataSource dataSource): IAsyncUserRepository
 {
-    public async Task<IEnumerable<UserDao>> GetUsersAsync(int? amount)
+    public async Task<IEnumerable<UserEntity>> GetUsersAsync(int? amount)
     {
         var sql = "SELECT * FROM table_users WHERE is_deleted = false";
         if (amount.HasValue)
             sql += " LIMIT @amount";
         await using var db = await dataSource.OpenConnectionAsync();
-        return await db.QueryAsync<UserDao>(sql, 
+        return await db.QueryAsync<UserEntity>(sql, 
             new { amount });
     }
 
-    public async Task<UserDao?> GetUserByEmailAsync(string email)
+    public async Task<UserEntity?> GetUserByEmailAsync(string email)
     {
         const string sql = "SELECT * FROM table_users WHERE is_deleted = false AND email = @email";
         await using var db = await dataSource.OpenConnectionAsync();
-        return await db.QueryFirstOrDefaultAsync<UserDao>(sql, 
+        return await db.QueryFirstOrDefaultAsync<UserEntity>(sql, 
             new { email });
     }
     
-    public async Task<int> AddUserAsync(UserDao user)
+    public async Task<int> AddUserAsync(UserEntity user)
     {
         if (user.IsDeleted)
             user.IsDeleted = false;
@@ -40,7 +40,7 @@ public class AsyncUserRepository(NpgsqlDataSource dataSource): IAsyncUserReposit
         return await db.ExecuteScalarAsync<int>(sql, user);
     }
 
-    public async Task<UserDao?> UpdateUserAsync(UserDao user)
+    public async Task<UserEntity?> UpdateUserAsync(UserEntity user)
     {
         const string sql = """
                            UPDATE table_users
@@ -58,7 +58,7 @@ public class AsyncUserRepository(NpgsqlDataSource dataSource): IAsyncUserReposit
                            RETURNING *
                            """;
         await using var db = await dataSource.OpenConnectionAsync();
-        return await db.QueryFirstOrDefaultAsync<UserDao>(sql, user);
+        return await db.QueryFirstOrDefaultAsync<UserEntity>(sql, user);
     }
     
     public async Task<int> SoftDeleteUserAsync(int userId)

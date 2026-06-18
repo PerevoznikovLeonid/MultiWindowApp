@@ -1,7 +1,6 @@
 using System;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
-using MultiWindowApp.Models.DAOs;
 using MultiWindowApp.Models.Interfaces;
 using MultiWindowApp.Models.Services;
 using ReactiveUI;

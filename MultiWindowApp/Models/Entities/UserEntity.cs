@@ -1,9 +1,9 @@
 using System;
 using MultiWindowApp.Models.Enums;
 
-namespace MultiWindowApp.Models.DAOs;
+namespace MultiWindowApp.Models.Entities;
 
-public class UserDao
+public class UserEntity
 {
     public int Id { get; set; }
     public string FirstName { get; set; } = string.Empty;

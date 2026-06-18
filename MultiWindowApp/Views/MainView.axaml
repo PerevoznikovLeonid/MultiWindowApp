@@ -3,10 +3,21 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:MultiWindowApp.ViewModels"
-             xmlns:dao="using:MultiWindowApp.Models.DAOs"
              xmlns:c="clr-namespace:MultiWindowApp.Components"
+             xmlns:e="clr-namespace:MultiWindowApp.Models.Entities"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:DataType="vm:MainViewModel"
              x:Class="MultiWindowApp.Views.MainView">
-   
+   <UserControl.Resources>
+       <DataTemplate x:Key="TemplateUser" DataType="{x:Type vm:UserViewModel}">
+           <TextBlock>
+               <TextBlock.Text>
+                   <MultiBinding StringFormat="{}{0}: {1}">
+                       <Binding Path="Id"/>
+                       <Binding Path="FullName"></Binding>
+                   </MultiBinding>
+               </TextBlock.Text>
+           </TextBlock>
+       </DataTemplate>
+   </UserControl.Resources>
 </UserControl>

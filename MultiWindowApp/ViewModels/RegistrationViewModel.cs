@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using MultiWindowApp.Models.DAOs;
+using MultiWindowApp.Models.Entities;
 using MultiWindowApp.Models.Enums;
 using MultiWindowApp.Models.Interfaces;
 using ReactiveUI;
@@ -72,7 +72,7 @@ public partial class RegistrationViewModel : ViewModelBase, IRoutableViewModel
     {
         if (await _userRepository.GetUserByEmailAsync(Email) is null)
         {
-            var user = new UserDao
+            var user = new UserEntity
             {
                 FirstName = this.FirstName,
                 LastName = this.LastName,

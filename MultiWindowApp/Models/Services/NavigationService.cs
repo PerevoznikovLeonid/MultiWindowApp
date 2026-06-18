@@ -1,6 +1,6 @@
 using System;
 using Microsoft.Extensions.DependencyInjection;
-using MultiWindowApp.Models.DAOs;
+using MultiWindowApp.Models.Entities;
 using MultiWindowApp.Models.Interfaces;
 using MultiWindowApp.ViewModels;
 using ReactiveUI;
@@ -9,9 +9,9 @@ namespace MultiWindowApp.Models.Services;
 
 public class NavigationService(IServiceProvider serviceProvider): INavigationService
 {
-    public void NavigateToMain(IScreen hostScreen, UserDao userDao)
+    public void NavigateToMain(IScreen hostScreen, UserEntity userEntity)
     {
-        var vm = ActivatorUtilities.CreateInstance<MainViewModel>(serviceProvider, hostScreen, userDao);
+        var vm = ActivatorUtilities.CreateInstance<MainViewModel>(serviceProvider, hostScreen, userEntity);
         hostScreen.Router.Navigate.Execute(vm);
     }
     
