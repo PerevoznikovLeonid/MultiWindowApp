@@ -34,12 +34,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Update="users.db">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
-    </ItemGroup>
-
-    <ItemGroup>
       <Content Include="..\.dockerignore">
         <Link>.dockerignore</Link>
       </Content>

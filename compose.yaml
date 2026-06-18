@@ -1,6 +1,4 @@
-﻿version: '3.8'
-
-services:
+﻿services:
   postgres:
     image: postgres:16
     container_name: users_db
@@ -23,7 +21,10 @@ services:
     image: flyway/flyway:latest
     container_name: flyway
     command:
-      -url=jdbc:postgresql://postgres:5432/${POSTGRES_DB} -user=${POSTGRES_USER} -password=${POSTGRES_PASSWORD} migrate
+      - "-url=jdbc:postgresql://postgres:5432/${POSTGRES_DB}"
+      - "-user=${POSTGRES_USER}"
+      - "-password=${POSTGRES_PASSWORD}"
+      - "migrate"
     volumes:
       - ./migrations:/flyway/sql
     depends_on:
