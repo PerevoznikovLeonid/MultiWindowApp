@@ -20,4 +20,62 @@
            </TextBlock>
        </DataTemplate>
    </UserControl.Resources>
+    
+    <DockPanel x:Name="RootDockPanel" LastChildFill="True">
+        <Grid ColumnDefinitions="1.5*, 3*"
+              Margin="12">
+            <Border Grid.Column="0"
+                    Background="{StaticResource SurfaceBrush}"
+                    CornerRadius="8"
+                    Margin="0, 0, 8, 0">
+                <DockPanel>
+                    <TextBlock DockPanel.Dock="Top" 
+                               Text="Пользователи"
+                               FontWeight="Bold"
+                               FontSize="16"
+                               Margin="12, 12, 12, 8"/>
+                    <ListBox ItemsSource="{Binding Users, Mode=OneWay}"
+                             SelectionMode="Toggle"
+                             SelectedItem="{Binding SelectedUser, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             Template="{StaticResource TemplateUser}"
+                             Background="LightGray"
+                             BorderThickness="0"
+                             Margin="8, 0, 8, 12"/>
+                </DockPanel>
+            </Border>
+            
+            <Border Grid.Column="1"
+                    Background="{StaticResource SurfaceBrush}"
+                    CornerRadius="8"
+                    Margin="8, 0, 0, 0"
+                    Padding="16">
+                <DockPanel>
+                    <TextBlock DockPanel.Dock="Top" 
+                               Text="Редактирование пользователя"
+                               FontWeight="Bold"
+                               FontSize="16"
+                               Margin="0, 12, 0, 16"/>
+                    <StackPanel DockPanel.Dock="Top">
+                        <c:InputComponent Label="ID"
+                                          Value="{Binding Id, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                          IsReadOnly="True"
+                                          Margin="0, 4"/>
+                        <c:InputComponent Label="Имя"
+                                          Value="{Binding FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                          PlaceholderText="Введите имя"
+                                          Margin="0, 8"/>
+                        <c:InputComponent Label="Фамилия"
+                                          Value="{Binding FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                          PlaceholderText="Введите фамилию"
+                                          Margin="0, 8"/>
+                        <c:InputComponent Label="Email"
+                                          Value="{Binding FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                          PlaceholderText="Введите пол"
+                                          Margin="0, 8"/>
+                        
+                    </StackPanel>
+                </DockPanel>
+            </Border>
+        </Grid>
+    </DockPanel>
 </UserControl>

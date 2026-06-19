@@ -3,35 +3,14 @@ using Avalonia;
 using Avalonia.Controls;
 using MultiWindowApp.ViewModels;
 using ReactiveUI;
+using ReactiveUI.Avalonia;
 
 namespace MultiWindowApp.Views;
 
-public partial class MainView : UserControl, IViewFor<MainViewModel>
+public partial class MainView : ReactiveUserControl<MainViewModel>
 {
     public MainView()
     {
         InitializeComponent();
-    }
-    
-    public static readonly StyledProperty<MainViewModel?> ViewModelProperty =
-        AvaloniaProperty.Register<MainView, MainViewModel?>(nameof(ViewModel));
-
-    public MainViewModel? ViewModel
-    {
-        get => GetValue(ViewModelProperty);
-        set => SetValue(ViewModelProperty, value);
-    }
-    
-    object? IViewFor.ViewModel
-    {
-        get => ViewModel;
-        set => ViewModel = (MainViewModel?)value;
-    }
-    
-    protected override void OnDataContextChanged(EventArgs e)
-    {
-        base.OnDataContextChanged(e);
-        if (DataContext is MainViewModel vm)
-            ViewModel = vm;
     }
 }

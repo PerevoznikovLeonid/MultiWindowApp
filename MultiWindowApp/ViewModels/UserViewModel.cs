@@ -4,28 +4,56 @@ using MultiWindowApp.Models.Enums;
 
 namespace MultiWindowApp.ViewModels;
 
-public class UserViewModel(UserEntity user) : ViewModelBase
+public class UserViewModel : ViewModelBase
 {
-    public int Id { get; } = user.Id;
-    public string FirstName { get; } = user.FirstName;
-    public string LastName { get; } = user.LastName;
-    public string Email { get; } = user.Email;
-    public Gender Gender { get; } = user.Gender;
-    public DateOnly BirthDate { get; } = user.BirthDate;
-    public bool IsAdmin { get; } = user.IsAdmin;
-    public bool IsDeleted { get; } = user.IsDeleted;
+    public int Id { get; }
+    public string FirstName { get; }
+    public string LastName { get; }
+    public string Email { get; }
+    public string Password { get; }
+    public Gender Gender { get; }
+    public DateOnly BirthDate { get; }
+    public bool IsAdmin { get; }
+    public bool IsDeleted { get; }
 
     public string FullName => $"{FirstName} {LastName}";
 
-    public UserEntity ToUserDao() => new()
+    public UserViewModel(UserEntity user)
     {
-        Id = Id,
-        FirstName = FirstName,
-        LastName = LastName,
-        Email = Email,
-        Gender = Gender,
-        BirthDate = BirthDate,
-        IsAdmin = IsAdmin,
-        IsDeleted = IsDeleted
+        Id = user.Id;
+        FirstName = user.FirstName;
+        LastName = user.LastName;
+        Email = user.Email;
+        Password = user.Password;
+        Gender = user.Gender;
+        BirthDate = user.BirthDate;
+        IsAdmin = user.IsAdmin;
+        IsDeleted = user.IsDeleted;
+    }
+
+    public UserViewModel(UserViewModel user)
+    {
+        Id = user.Id;
+        FirstName = user.FirstName;
+        LastName = user.LastName;
+        Email = user.Email;
+        Password = user.Password;
+        Gender = user.Gender;
+        BirthDate = user.BirthDate;
+        IsAdmin = user.IsAdmin;
+        IsDeleted = user.IsDeleted;
+    }
+    
+    public UserEntity ToUserEntity() => new()
+    {
+        Id = this.Id,
+        FirstName = this.FirstName,
+        LastName = this.LastName,
+        Email = this.Email,
+        Password = this.Password,
+        Gender = this.Gender,
+        BirthDate = this.BirthDate,
+        IsAdmin = this.IsAdmin,
+        IsDeleted = this.IsDeleted
     };
 }

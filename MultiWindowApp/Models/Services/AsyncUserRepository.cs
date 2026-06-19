@@ -19,6 +19,14 @@ public class AsyncUserRepository(NpgsqlDataSource dataSource): IAsyncUserReposit
             new { amount });
     }
 
+    public async Task<UserEntity?> GetUserByIdAsync(int userId)
+    {
+        const string sql = "SELECT * FROM table_users WHERE is_deleted = false AND id = @id";
+        await using var db = await dataSource.OpenConnectionAsync();
+        return await db.QueryFirstOrDefaultAsync<UserEntity>(sql, 
+            new { uesrId = userId });
+    }
+    
     public async Task<UserEntity?> GetUserByEmailAsync(string email)
     {
         const string sql = "SELECT * FROM table_users WHERE is_deleted = false AND email = @email";

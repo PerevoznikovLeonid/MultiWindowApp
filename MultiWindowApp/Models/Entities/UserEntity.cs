@@ -11,6 +11,7 @@ public class UserEntity
     public Gender Gender { get; set; } = Gender.Unspecified;
     public DateOnly BirthDate { get; set; }
     public string Email { get; set; } = string.Empty;
-    public string Password { get; set; } = string.Empty; public bool IsAdmin { get; set; }
+    public string Password { get; set; } = string.Empty;
+    public bool IsAdmin { get; set; }
     public bool IsDeleted { get; set; }
 }

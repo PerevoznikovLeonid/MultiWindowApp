@@ -57,10 +57,10 @@ public partial class RegistrationViewModel : ViewModelBase, IRoutableViewModel
             x => x.Email,
             x => x.Password,
             x => x.PasswordConfirm,
-            (firstName, lastName, dateOfBirth, email, password, passwordConfirm) =>
+            (firstName, lastName, birthDate, email, password, passwordConfirm) =>
                 !string.IsNullOrWhiteSpace(firstName) &&
                 !string.IsNullOrWhiteSpace(lastName) &&
-                dateOfBirth != default &&
+                birthDate != default &&
                 !string.IsNullOrWhiteSpace(email) &&
                 !string.IsNullOrWhiteSpace(password) &&
                 !string.IsNullOrWhiteSpace(passwordConfirm) &&
